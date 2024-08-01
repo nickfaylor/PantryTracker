@@ -5,6 +5,7 @@ import { firestore } from './firebase';
 import { collection, count } from 'firebase/firestore'
 import { use, useEffect, useState } from "react";
 import { getDocs, query, setDoc, doc, deleteDoc, getDoc } from "firebase/firestore";
+import './styles.css';
 
 const style = {
   position: 'absolute',
@@ -88,9 +89,7 @@ export default function Home() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Add item
-          </Typography>
+
           <Stack width="100%" direction={'row'} spacing={2}>
             <TextField
               id="outlined-basic"
@@ -110,32 +109,32 @@ export default function Home() {
           </Stack>
         </Box>
       </Modal>
-      <Button variant="contained" onClick={handleOpen}>Add</Button>
+
       <Box border={'1px solid black'}>
-        <Box width="800px" height="100px" bgcolor={'#ADD8E6'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Box width="800px" height="100px" bgcolor={'#e07a5f'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
           <Typography variant={'h2'} color={'black'} textAlign={'center'}>
             Pantry Items
           </Typography>
         </Box>
 
-        <Stack width="800px" height="500px" spacing={2} overflow={'auto'}>
+        <Stack width="800px" height="500px" spacing={2} overflow={'auto'} bgcolor={'white'}>
           {pantry.map(({ name, count }) => (
             <Box
               key={name}
               width="100%"
-              height="150px"
+              height="100px"
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
               bgcolor={'#f0f0f0'}
-              paddingX={5
-
-              }
+              paddingX={5}
+              borderRadius={'50px'}
             >
               <Typography
                 variant={'h3'}
                 color={'black'}
                 textAlign={'center'}
+                fontSize={24}
               >
                 {
                   //Capitalizing the first letter of each item
@@ -144,7 +143,7 @@ export default function Home() {
 
               </Typography>
 
-              <Typography variant={'h3'} color={'#333'} textAlign={'center'}>
+              <Typography variant={'h3'} color={'#333'} textAlign={'center'} fontSize={22}>
                 Quantity: {count}
               </Typography>
 
@@ -157,6 +156,7 @@ export default function Home() {
           ))}
         </Stack>
       </Box>
+      <Button variant="contained" onClick={handleOpen} className="custom-add-button">Add</Button>
     </Box>
 
   );
